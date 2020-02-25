@@ -22,7 +22,7 @@ export default {
   name: 'Home',
   data() {
     return {
-      backgroundImage: require('../assets/footballTwo.jpg'),
+      backgroundImage: require('../assets/desktop-background.jpg'),
       mobileBackgroundImage: require('../assets/mobile-background.jpg'),
       navLinks: [
         {
