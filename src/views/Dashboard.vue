@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     async submitPlayer(form) {
-      const postResponse = await Axios.post('http://localhost:2000/api/players/create', form);
+      const postResponse = await Axios.post('https://internal-football-app.herokuapp.com/api/players/create', form);
 
       if (postResponse.status === 200) {
         this.playerPost.postStatus = 'success';
@@ -64,7 +64,6 @@ export default {
 
 <style lang="scss" scoped>
 .dashboard {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

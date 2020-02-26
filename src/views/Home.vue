@@ -1,6 +1,6 @@
 <template>
   <div class="home d-sm-inline-flex justify-space-between flex-wrap">
-    <div class="home__top-goals home--table px-12">
+    <div class="home__top-goals home--table px-12 mb-5">
       <h3 class="white--text text-center">Top 5 Games Played</h3>
       <v-simple-table>
         <template v-slot:default>
@@ -22,7 +22,7 @@
       </v-simple-table>
     </div>
 
-    <div class="home__top-games px-12 home--table">
+    <div class="home__top-games px-12 home--table mb-5">
       <h3 class="white--text text-center">Top 5 Goal Scorers</h3>
       <v-simple-table>
         <template v-slot:default>
@@ -44,7 +44,7 @@
       </v-simple-table>
     </div>
 
-    <div class="home__top-games px-12 home--table">
+    <div class="home__top-games px-12 home--table mb-5">
       <h3 class="white--text text-center">Last 5 Game Results</h3>
       <v-simple-table>
         <template v-slot:default>
@@ -70,13 +70,7 @@
 
 <script>
 export default {
-  name: 'Home',
-  data() {
-    return {
-      backgroundImage: require('../assets/desktop-background.jpg'),
-      mobileBackgroundImage: require('../assets/mobile-background.jpg')
-    };
-  }
+  name: 'Home'
 };
 </script>
 

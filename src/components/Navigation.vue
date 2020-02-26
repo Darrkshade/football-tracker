@@ -1,24 +1,21 @@
 <template>
   <nav>
-    <v-navigation-drawer app permanent expand-on-hover v-model="isDrawerOpen" class="primary">
+    <v-navigation-drawer app permanent mini-variant="" v-model="isDrawerOpen" class="primary">
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="title">
-            Maersk Football
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            Welcome to our football hub
-          </v-list-item-subtitle>
+          <v-list-icon>
+            <v-icon>mdi-soccer</v-icon>
+          </v-list-icon>
         </v-list-item-content>
       </v-list-item>
       <v-list>
         <v-list-item router :to="item.route" v-for="item in navLinks" :key="item.title">
-          <v-list-item-icon left>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
+          <v-tooltip right>
+            <template v-slot:activator="{ on }">
+              <v-icon v-on="on">{{ item.icon }}</v-icon>
+            </template>
+            <span>{{ item.title }}</span>
+          </v-tooltip>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
