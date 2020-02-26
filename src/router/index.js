@@ -9,6 +9,21 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/maersk-table',
+    name: 'MaerskLeague',
+    component: () => import('../views/MaerskLeague.vue')
+  },
+  {
+    path: '/prem-league',
+    name: 'PremLeague',
+    component: () => import('../views/PremLeague.vue')
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('../views/Dashboard.vue')
   }
 ];
 

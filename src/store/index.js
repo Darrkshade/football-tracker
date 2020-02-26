@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     players: [],
     errors: [],
-    standings: []
+    standings: [],
+    maerskStandings: []
   },
   mutations: {
     async GET_PREM_LEAGUE_STANDINGS(state) {
@@ -29,14 +30,24 @@ export default new Vuex.Store({
         .catch(e => {
           state.errors = e;
         });
+    },
+    async GET_MAERSK_PLAYERS(state) {
+      const playerResponse = await axios.get('http://localhost:2000/api/players', {
+        headers: {
+          'Access-Contr-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      state.maerskStandings = playerResponse.data;
     }
   },
   actions: {
-    keepPlayersUpdated({ commit }) {
-      commit('KEEP_PLAYERS_UPDATED_LIVE');
-    },
     getStandings({ commit }) {
       commit('GET_PREM_LEAGUE_STANDINGS');
+    },
+    getMaerskStandings({ commit }) {
+      commit('GET_MAERSK_PLAYERS');
     }
   },
   modules: {}

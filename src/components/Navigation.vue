@@ -1,7 +1,6 @@
 <template>
   <nav>
-    <v-icon class="white--text ma-3" large v-on:click="drawer = !drawer">mdi-menu</v-icon>
-    <v-navigation-drawer app v-model="drawer">
+    <v-navigation-drawer app permanent expand-on-hover v-model="isDrawerOpen" class="primary">
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title">
@@ -12,12 +11,12 @@
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
-      <v-list dense nav v-for="item in navLinks" :key="item.title">
-        <v-list-item>
-          <v-list-item-icon>
+      <v-list>
+        <v-list-item router :to="item.route" v-for="item in navLinks" :key="item.title">
+          <v-list-item-icon left>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
-          <v-list-item-content router-link to="/">
+          <v-list-item-content>
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -30,12 +29,8 @@
 export default {
   name: 'Navigation',
   props: {
-    navLinks: Array
-  },
-  data() {
-    return {
-      drawer: false
-    };
+    navLinks: Array,
+    isDrawerOpen: Boolean
   }
 };
 </script>
