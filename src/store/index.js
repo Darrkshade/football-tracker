@@ -32,7 +32,7 @@ export default new Vuex.Store({
         });
     },
     async GET_MAERSK_PLAYERS(state) {
-      const playerResponse = await axios.get('http://localhost:2000/api/players', {
+      const playerResponse = await axios.get('https://internal-football-app.herokuapp.com/api/players', {
         headers: {
           'Access-Contr-Allow-Origin': '*',
           'Content-Type': 'application/json'
