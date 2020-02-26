@@ -47,7 +47,7 @@ export default {
   methods: {
     async submitPlayer(form) {
       const postResponse = await Axios.post('http://localhost:2000/api/players/create', form);
-      console.log(postResponse);
+
       if (postResponse.status === 200) {
         this.playerPost.postStatus = 'success';
         this.playerPost.showSnackbar = true;
