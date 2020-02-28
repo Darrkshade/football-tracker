@@ -1,7 +1,10 @@
 <template>
   <div class="dashboard">
     <FormInput :inputs="inputs" v-on:submitPlayer="submitPlayer" />
-    <v-snackbar class="text-center" :color="playerPost.postStatus" bottom :value="playerPost.showSnackbar">{{ playerPost.statusMessage }}</v-snackbar>
+    <v-snackbar class="text-center" :color="playerPost.postStatus" bottom :value="playerPost.showSnackbar" :timeout="0">
+      {{ playerPost.statusMessage }}
+      <v-btn color="white" text v-on:click="playerPost.showSnackbar = false">Close</v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -21,6 +24,10 @@ export default {
           model: 'playerName'
         },
         {
+          text: 'Position',
+          model: 'position'
+        },
+        {
           text: 'Games Played',
           model: 'gamesPlayed'
         },
@@ -29,12 +36,20 @@ export default {
           model: 'wins'
         },
         {
-          text: 'Position',
-          model: 'position'
+          text: 'Draws',
+          model: 'draws'
+        },
+        {
+          text: 'Losses',
+          model: 'losses'
         },
         {
           text: 'Goals',
           model: 'goals'
+        },
+        {
+          text: 'Own Goals',
+          model: 'ownGoals'
         }
       ],
       playerPost: {
@@ -46,17 +61,17 @@ export default {
   },
   methods: {
     async submitPlayer(form) {
-      const postResponse = await Axios.post('https://internal-football-app.herokuapp.com/api/players/create', form);
-
-      if (postResponse.status === 200) {
-        this.playerPost.postStatus = 'success';
-        this.playerPost.showSnackbar = true;
-        this.playerPost.statusMessage = 'Successfully create a new player!';
-      } else if (postResponse.status === 404) {
-        this.playerPost.postStatus = 'error';
-        this.playerPost.showSnackbar = true;
-        this.playerPost.statusMessage = 'Something went wrong, please try again';
+      let url;
+      if (process.env.NODE_ENV === 'development') {
+        url = 'http://localhost:2000/api/players/create';
+      } else {
+        url = 'https://internal-football-app.herokuapp.com/api/players/create';
       }
+
+      const response = await Axios.post(url, form);
+      this.playerPost.statusMessage = response.data.message;
+      this.playerPost.postStatus = response.data.status;
+      this.playerPost.showSnackbar = true;
     }
   }
 };

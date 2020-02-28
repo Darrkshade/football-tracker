@@ -1,11 +1,9 @@
 <template>
   <nav>
-    <v-navigation-drawer app permanent mini-variant="" v-model="isDrawerOpen" class="primary">
+    <v-navigation-drawer app permanent mini-variant class="primary">
       <v-list-item>
         <v-list-item-content>
-          <v-list-icon>
-            <v-icon>mdi-soccer</v-icon>
-          </v-list-icon>
+          <v-icon>mdi-soccer</v-icon>
         </v-list-item-content>
       </v-list-item>
       <v-list>
@@ -26,8 +24,7 @@
 export default {
   name: 'Navigation',
   props: {
-    navLinks: Array,
-    isDrawerOpen: Boolean
+    navLinks: Array
   }
 };
 </script>

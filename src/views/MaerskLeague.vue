@@ -16,6 +16,10 @@ export default {
           value: 'playerName'
         },
         {
+          text: 'Position',
+          value: 'position'
+        },
+        {
           text: 'Games Played',
           value: 'gamesPlayed'
         },
@@ -24,12 +28,32 @@ export default {
           value: 'wins'
         },
         {
+          text: 'Draws',
+          value: 'draws'
+        },
+        {
+          text: 'Losses',
+          value: 'losses'
+        },
+        {
+          text: 'Win %',
+          value: 'winPercentage'
+        },
+        {
           text: 'Goals',
           value: 'goals'
         },
         {
-          text: 'Position',
-          value: 'position'
+          text: 'GPGA',
+          value: 'goalsPerGameAverage'
+        },
+        {
+          text: 'Own Goals',
+          value: 'ownGoals'
+        },
+        {
+          text: 'Goals',
+          value: 'goals'
         }
       ],
       players: []

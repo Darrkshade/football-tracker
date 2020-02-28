@@ -39,7 +39,13 @@ export default new Vuex.Store({
         }
       });
 
-      state.maerskStandings = playerResponse.data;
+      state.maerskStandings = playerResponse.data.map(player => {
+        return {
+          ...player,
+          winPercentage: `${parseFloat((player.wins / player.gamesPlayed) * 100).toFixed(2)}%`,
+          goalsPerGameAverage: `${parseFloat(player.goals / player.gamesPlayed).toFixed()}`
+        };
+      });
     }
   },
   actions: {

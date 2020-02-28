@@ -6,7 +6,7 @@
       </v-row>
       <v-row align="center" justify="center" v-for="input in inputs" :key="input.text">
         <v-col cols="auto" sm="auto" md="3">
-          <v-text-field :label="input.text" outlined clearable v-model="formData[input.model]"></v-text-field>
+          <v-text-field required :label="input.text" outlined clearable v-model="formData[input.model]"></v-text-field>
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'Dashboard',
+  name: 'FormInput',
   props: {
     inputs: Array
   },

@@ -4,7 +4,7 @@
       <v-toolbar dense>
         <v-toolbar-title class="text-center">Maersk Football</v-toolbar-title>
       </v-toolbar>
-      <Navigation :navLinks="navLinks" :isDrawerOpen="isDrawerOpen" />
+      <Navigation :navLinks="navLinks" />
       <router-view />
     </v-content>
   </v-app>
@@ -16,7 +16,6 @@ export default {
   name: 'App',
   data() {
     return {
-      isDrawerOpen: false,
       navLinks: [
         {
           title: 'Home',
