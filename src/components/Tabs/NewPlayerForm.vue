@@ -1,9 +1,6 @@
 <template>
   <v-form>
     <v-container>
-      <v-row align="center" justify="center">
-        <h2>New Player Form</h2>
-      </v-row>
       <v-row align="center" justify="center" v-for="input in inputs" :key="input.text">
         <v-col cols="auto" sm="auto" md="3">
           <v-text-field required :label="input.text" outlined clearable v-model="formData[input.model]"></v-text-field>
@@ -20,7 +17,7 @@
 
 <script>
 export default {
-  name: 'FormInput',
+  name: 'NewPlayerForm',
   props: {
     inputs: Array
   },

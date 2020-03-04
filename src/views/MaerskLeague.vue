@@ -1,6 +1,22 @@
 <template>
   <div>
-    <v-data-table :headers="headers" :items="maerskStandings"></v-data-table>
+    <v-data-table :headers="headers" :items="maerskStandings" :items-per-page="15" :loading="this.isTableLoading" :loading-text="loadingText">
+      <template v-slot:item="row">
+        <tr>
+          <td>{{ row.item.playerName }}</td>
+          <td>{{ row.item.position }}</td>
+          <td>{{ row.item.gamesPlayed }}</td>
+          <td>{{ row.item.wins }}</td>
+          <td>{{ row.item.draws }}</td>
+          <td>{{ row.item.losses }}</td>
+          <td>{{ row.item.winPercentage }}</td>
+          <td>{{ row.item.goals }}</td>
+          <td>{{ row.item.goalsPerGameAverage }}</td>
+          <td>{{ row.item.ownGoals }}</td>
+          <td>{{ row.item.goals }}</td>
+        </tr>
+      </template>
+    </v-data-table>
   </div>
 </template>
 
@@ -10,6 +26,7 @@ export default {
   name: 'MaerskLeague',
   data() {
     return {
+      loadingText: 'Loading Data, Please wait.........',
       headers: [
         {
           text: 'Player',
@@ -55,8 +72,7 @@ export default {
           text: 'Goals',
           value: 'goals'
         }
-      ],
-      players: []
+      ]
     };
   },
   methods: {
@@ -67,7 +83,10 @@ export default {
   computed: {
     ...mapState({
       maerskStandings: 'maerskStandings'
-    })
+    }),
+    isTableLoading() {
+      return this.maerskStandings.length >= 0 ? false : true;
+    }
   },
   mounted() {
     this.getMaerskStandings();

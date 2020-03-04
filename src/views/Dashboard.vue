@@ -1,6 +1,15 @@
 <template>
   <div class="dashboard">
-    <FormInput :inputs="inputs" v-on:submitPlayer="submitPlayer" />
+    <ul class="dashboard__tabs">
+      <v-btn class="dashboard__tabs--tab" v-for="tab in tabs" :key="tab.key" v-on:click="changeCurrentTab(tab)">{{ tab.title }}</v-btn>
+    </ul>
+
+    <div class="dashboard--active-tab">
+      <NewPlayerForm v-show="currentTab === 0" :inputs="inputs" />
+      <UpdatePlayerForm v-show="currentTab === 1"></UpdatePlayerForm>
+      <h3 v-show="currentTab === 2">Hello Third Tab</h3>
+    </div>
+
     <v-snackbar class="text-center" :color="playerPost.postStatus" bottom :value="playerPost.showSnackbar" :timeout="0">
       {{ playerPost.statusMessage }}
       <v-btn color="white" text v-on:click="playerPost.showSnackbar = false">Close</v-btn>
@@ -9,15 +18,27 @@
 </template>
 
 <script>
+import { NewPlayerForm, UpdatePlayerForm } from '../components.js';
 import Axios from 'axios';
-import FormInput from '@/components/FormInput.vue';
 export default {
   name: 'Dashboard',
   components: {
-    FormInput
+    NewPlayerForm,
+    UpdatePlayerForm
   },
   data() {
     return {
+      currentTab: 0,
+      tabs: [
+        {
+          key: 0,
+          title: 'New Player Form'
+        },
+        {
+          key: 1,
+          title: 'Update Player'
+        }
+      ],
       inputs: [
         {
           text: 'Player Name',
@@ -60,6 +81,9 @@ export default {
     };
   },
   methods: {
+    changeCurrentTab(tab) {
+      this.currentTab = tab.key;
+    },
     async submitPlayer(form) {
       let url;
       if (process.env.NODE_ENV === 'development') {
@@ -79,8 +103,23 @@ export default {
 
 <style lang="scss" scoped>
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  &__tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    &--tab {
+      margin-top: 12px;
+      padding: 24px;
+    }
+  }
+
+  &--active-tab {
+    margin: 0 auto;
+  }
+}
+
+li {
+  list-style-type: none;
 }
 </style>
