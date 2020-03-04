@@ -32,13 +32,13 @@ export default {
   },
   methods: {
     async findPlayer(player) {
-      const fetchedPlayer = await Axios.get(`http://localhost:2000/api/players/${player}`);
+      const fetchedPlayer = await Axios.get(`https://internal-football-app.herokuapp.com/api/players/${player}`);
 
       this.foundPlayers = fetchedPlayer.data;
     },
     async sendUpdatedPlayer({ playerStats, playerName }) {
-      await Axios.patch(`http://localhost:2000/api/players/update/${playerName}`, { ...playerStats });
-      // console.log(updatedPlayer);
+      await Axios.patch(`https://internal-football-app.herokuapp.com/api/players/update/${playerName}`, { ...playerStats });
+
       await this.getMaerskStandings();
       await this.findPlayer(playerName);
     },
