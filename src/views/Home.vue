@@ -1,10 +1,10 @@
 <template>
-  <div class="home d-flex flex-wrap flex-row" style="height: calc(100vh - 48px)">
+  <div class="home">
     <div class="home--middle-section text-center">
       <h1 class="pa-4">Maidenhead Maersk FC</h1>
       <p>100% Win Rate! UNBEATEN SEASON!</p>
       <p>Play us if you dare to lose!</p>
-      <img class="home--photo d-none d-xl-block" :src="teamPhoto" alt="" />
+      <img class="home--photo d-none d-lg-block" :src="teamPhoto" alt="Team photo of the team that played against Dynmo FC" />
     </div>
 
     <div class="home--right-section">
@@ -89,8 +89,6 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  position: absolute;
-  background-repeat: no-repeat;
   width: 100%;
 }
 
@@ -98,8 +96,10 @@ export default {
   line-height: 4rem !important;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 1265px) {
   .home {
+    display: flex !important;
+    flex-direction: row !important;
     &--table {
       width: 50%;
       max-width: 400px;
@@ -117,15 +117,14 @@ export default {
     &--photo {
       width: 800px;
       border-radius: 10px;
-      box-shadow: 0 2px 20px rgba(255, 255, 255, 0.25);
     }
 
     &--middle-section {
-      margin-left: 19rem;
+      margin-left: 100px;
     }
 
     &--right-section {
-      margin-left: 10rem;
+      margin-left: 100px;
       margin-top: 132px;
     }
   }

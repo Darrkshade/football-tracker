@@ -1,10 +1,11 @@
 <template>
   <v-app>
-    <v-content transition="slide-x-transition">
+    <v-content>
       <v-toolbar dense>
+        <v-app-bar-nav-icon v-on:click.stop="showDrawer = !showDrawer" v-show="$vuetify.breakpoint.mdAndDown"></v-app-bar-nav-icon>
         <v-toolbar-title class="text-center">Maersk Football</v-toolbar-title>
       </v-toolbar>
-      <Navigation :navLinks="navLinks" />
+      <Navigation :navLinks="navLinks" :showDrawer="showDrawer" />
       <router-view />
     </v-content>
   </v-app>
@@ -17,6 +18,7 @@ export default {
   name: 'App',
   data() {
     return {
+      showDrawer: false,
       navLinks: [
         {
           title: 'Home',
@@ -32,11 +34,6 @@ export default {
           title: 'Prem League',
           icon: 'mdi-table',
           route: '/prem-league'
-        },
-        {
-          title: 'Dashboard',
-          icon: 'mdi-view-dashboard',
-          route: '/dashboard'
         }
       ]
     };
