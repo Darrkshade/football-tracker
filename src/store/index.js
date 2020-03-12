@@ -34,7 +34,7 @@ export default new Vuex.Store({
         });
     },
     async GET_OUTFIELD_TABLE(state) {
-      const playerResponse = await axios.get('http://localhost:2000/api/players', {
+      const playerResponse = await axios.get('https://internal-football-app.herokuapp.com/api/players', {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ export default new Vuex.Store({
       });
     },
     async GET_GOALKEEPERS(state) {
-      const playerResponse = await axios.get('http://localhost:2000/api/players/goalkeepers', {
+      const playerResponse = await axios.get('https://internal-football-app.herokuapp.com/api/players/goalkeepers', {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ export default new Vuex.Store({
       });
     },
     async GET_RECENT_GAMES(state) {
-      const gamesResponse = await axios.get('http://localhost:2000/api/matchhistory', {
+      const gamesResponse = await axios.get('https://internal-football-app.herokuapp.com/api/matchhistory', {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json'

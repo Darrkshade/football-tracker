@@ -56,8 +56,7 @@ export default {
   },
   methods: {
     async save() {
-      const playerPost = await Axios.post('http://localhost:2000/api/players/create', this.newPlayer);
-      console.log(playerPost);
+      await Axios.post('http://https://internal-football-app.herokuapp.com/api/players/create', this.newPlayer);
       this.close();
     },
     close() {
@@ -72,9 +71,7 @@ export default {
         this.errorMessages.push(errorMessage);
       }
     },
-    validateForm() {
-      console.log('You submitted a form');
-    },
+
     checkForErrors(value) {
       if (!value) {
         this.errorMessages.push('Please enter a value');
