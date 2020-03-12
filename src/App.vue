@@ -18,7 +18,7 @@ export default {
   name: 'App',
   data() {
     return {
-      showDrawer: false,
+      showDrawer: null,
       navLinks: [
         {
           title: 'Home',
