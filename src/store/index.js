@@ -9,7 +9,9 @@ export default new Vuex.Store({
     players: [],
     errors: [],
     standings: [],
-    maerskStandings: []
+    outfieldPlayers: [],
+    goalKeepers: [],
+    matchHistory: []
   },
   mutations: {
     async GET_PREM_LEAGUE_STANDINGS(state) {
@@ -31,29 +33,64 @@ export default new Vuex.Store({
           state.errors = e;
         });
     },
-    async GET_MAERSK_PLAYERS(state) {
-      const playerResponse = await axios.get('https://internal-football-app.herokuapp.com/api/players', {
+    async GET_OUTFIELD_TABLE(state) {
+      const playerResponse = await axios.get('http://localhost:2000/api/players', {
         headers: {
-          'Access-Contr-Allow-Origin': '*',
+          'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json'
         }
       });
 
-      state.maerskStandings = playerResponse.data.map(player => {
+      state.outfieldPlayers = playerResponse.data.map(player => {
         return {
-          ...player,
+          playerName: player.playerName,
           winPercentage: `${parseFloat((player.wins / player.gamesPlayed) * 100).toFixed(2)}%`,
-          goalsPerGameAverage: `${parseFloat(player.goals / player.gamesPlayed).toFixed()}`
+          goalsPerGameAverage: `${parseFloat(player.goals / player.gamesPlayed).toFixed()}`,
+          ...player
         };
       });
+    },
+    async GET_GOALKEEPERS(state) {
+      const playerResponse = await axios.get('http://localhost:2000/api/players/goalkeepers', {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      state.goalKeepers = playerResponse.data.map(player => {
+        return {
+          ...player,
+          playerName: player.playerName,
+          goalsAgainstAverage: `${parseFloat(player.goalsAgainst / player.gamesPlayed)}`,
+          cleanSheetPercentage: `${parseFloat(player.cleanSheets / player.gamesPlayed) * 100}%`,
+          winPercentage: `${parseFloat(player.wins / player.gamesPlayed) * 100}%`
+        };
+      });
+    },
+    async GET_RECENT_GAMES(state) {
+      const gamesResponse = await axios.get('http://localhost:2000/api/matchhistory', {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      state.matchHistory = gamesResponse.data.sort((a, b) => new Date(b.dateSubmitted) - new Date(a.dateSubmitted));
     }
   },
   actions: {
     getStandings({ commit }) {
       commit('GET_PREM_LEAGUE_STANDINGS');
     },
-    getMaerskStandings({ commit }) {
-      commit('GET_MAERSK_PLAYERS');
+    outfieldPlayers({ commit }) {
+      commit('GET_OUTFIELD_TABLE');
+    },
+    getGoalkeepers({ commit }) {
+      commit('GET_GOALKEEPERS');
+    },
+    getRecentGames({ commit }) {
+      commit('GET_RECENT_GAMES');
     }
   },
   modules: {}

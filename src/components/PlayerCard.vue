@@ -21,12 +21,12 @@ export default {
   data() {
     return {
       updatedPlayer: {
-        goals: 0,
-        ownGoals: 0,
-        gamesPlayed: 0,
-        wins: 0,
-        draws: 0,
-        losses: 0
+        goals: null,
+        ownGoals: null,
+        gamesPlayed: null,
+        wins: null,
+        draws: null,
+        losses: null
       }
     };
   },
@@ -43,7 +43,8 @@ export default {
   padding: 8px;
   box-shadow: 0 0 4px #cecece;
   color: black;
-  max-width: 400px;
+  width: 400px;
+  margin: 8px 8px;
   text-align: center;
 
   &__input {

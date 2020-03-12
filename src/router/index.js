@@ -11,11 +11,6 @@ const routes = [
     component: Home
   },
   {
-    path: '/maersk-table',
-    name: 'MaerskLeague',
-    component: () => import('../views/MaerskLeague.vue')
-  },
-  {
     path: '/prem-league',
     name: 'PremLeague',
     component: () => import('../views/PremLeague.vue')
@@ -24,6 +19,16 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/Dashboard.vue')
+  },
+  {
+    path: '/league',
+    name: 'InHouseLeague',
+    component: () => import('../views/InHouseLeague.vue')
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: () => import('../views/Test.vue')
   }
 ];
 

@@ -12,6 +12,7 @@
 
 <script>
 import Navigation from '@/components/Navigation.vue';
+import { mapActions } from 'vuex';
 export default {
   name: 'App',
   data() {
@@ -25,7 +26,7 @@ export default {
         {
           title: 'Maersk Prem League',
           icon: 'mdi-table',
-          route: '/maersk-table'
+          route: '/league'
         },
         {
           title: 'Prem League',
@@ -42,6 +43,16 @@ export default {
   },
   components: {
     Navigation
+  },
+  methods: {
+    ...mapActions({
+      getOutfieldPlayers: 'outfieldPlayers',
+      getGoalkeepers: 'getGoalkeepers'
+    })
+  },
+  created() {
+    this.getOutfieldPlayers();
+    this.getGoalkeepers();
   }
 };
 </script>

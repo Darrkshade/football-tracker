@@ -10,7 +10,9 @@
           </v-col>
         </v-row>
       </v-form>
-      <PlayerCard :player="foundPlayers" v-for="(player, key) in foundPlayers" :key="key" :index="key" v-show="foundPlayers.length > 0" v-on:updatePlayer="sendUpdatedPlayer" />
+      <div class="d-flex flex-row flex-wrap">
+        <PlayerCard :player="foundPlayers" v-for="(player, key) in foundPlayers" :key="key" :index="key" v-show="foundPlayers.length > 0" v-on:updatePlayer="sendUpdatedPlayer" />
+      </div>
     </v-container>
   </div>
 </template>
@@ -32,12 +34,12 @@ export default {
   },
   methods: {
     async findPlayer(player) {
-      const fetchedPlayer = await Axios.get(`https://internal-football-app.herokuapp.com/api/players/${player}`);
+      const fetchedPlayer = await Axios.get(`http://localhost:2000/api/players/${player}`);
 
       this.foundPlayers = fetchedPlayer.data;
     },
     async sendUpdatedPlayer({ playerStats, playerName }) {
-      await Axios.patch(`https://internal-football-app.herokuapp.com/api/players/update/${playerName}`, { ...playerStats });
+      await Axios.patch(`http://localhost:2000/api/players/update/${playerName}`, { ...playerStats });
 
       await this.getMaerskStandings();
       await this.findPlayer(playerName);
