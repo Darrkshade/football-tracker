@@ -18,7 +18,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="player in sortTopPlayers" :key="player.playerName">
+            <tr v-for="player in topGoalScorers" :key="player.playerName">
               <td>{{ player.playerName }}</td>
               <td>{{ player.goals }}</td>
             </tr>
@@ -68,7 +68,9 @@ export default {
   computed: {
     ...mapState(['outfieldPlayers', 'goalKeepers', 'matchHistory']),
     topGoalScorers() {
-      return this.outfieldPlayers.slice(0, this.topPlayerLimit);
+      const playersArr = [...this.outfieldPlayers];
+      playersArr.sort((a, b) => b.goals - a.goals);
+      return playersArr.slice(0, this.topPlayerLimit);
     },
     lastFiveGames() {
       return this.matchHistory.slice(0, this.gameHistoryLimit);

@@ -2,7 +2,6 @@
   <v-app>
     <v-content>
       <v-toolbar dense>
-        <v-app-bar-nav-icon v-on:click.stop="showDrawer = !showDrawer" v-show="$vuetify.breakpoint.mdAndDown"></v-app-bar-nav-icon>
         <v-toolbar-title class="text-center">Maersk Football</v-toolbar-title>
       </v-toolbar>
       <Navigation :navLinks="navLinks" :showDrawer="showDrawer" />
